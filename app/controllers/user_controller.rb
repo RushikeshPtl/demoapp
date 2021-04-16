@@ -6,7 +6,7 @@ class UserController < ApplicationController
 
     def register_user
         @user = User.new(user_params)
-        @user[:date_created] = Time.zone.local_to_utc(Time.new)
+        #@user[:date_created] = Time.zone.local_to_utc(Time.new)
         if @user.save
             render json: "User Registered Successfully"
         else 
