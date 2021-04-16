@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   post "Create_User" => "user#register_user"
   get "Activate_User" => "user#activate_user"
   post "auth_user" => "authentication#authenticate_user"
+  get "Hello" => "login#hello"
   post "Log_In" => "login#sign_in"
 end
