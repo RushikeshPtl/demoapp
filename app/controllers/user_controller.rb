@@ -1,5 +1,9 @@
 class UserController < ApplicationController
-    protect_from_forgery with: :null_session
+
+
+    def welcome
+    end
+
     def register_user
         @user = User.new(user_params)
         @user[:date_created] = Time.zone.local_to_utc(Time.new)
