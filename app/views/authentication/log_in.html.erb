@@ -1,0 +1,11 @@
+<h1>Log IN</h1>
+<%= form_tag :action => 'authenticate_user' do %>
+<p><label for = "email">Email</label>:
+
+<%= text_field 'user', 'username' %></p>
+<p><label for = "password">Password</label>:
+
+<%= text_field 'user', 'password' %></p>
+<%= submit_tag "Log In" %>
+
+<% end -%>

@@ -4,6 +4,9 @@ class UserController < ApplicationController
     def welcome
     end
 
+    def new
+    end
+    
     def register_user
         @user = User.new(user_params)
         #@user[:date_created] = Time.zone.local_to_utc(Time.new)

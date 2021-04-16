@@ -1,30 +1,7 @@
-<h1>Register User</h1>
+<h1>Welcom On Demo App</h1>
 
-<%= form_tag :action => 'register_user' do %>
-<p><label for = "username">Username</label>:
-
-<%= text_field 'user', 'username' %></p>
-<p><label for = "email">Email</label>:
-
-<%= text_field 'user', 'email' %></p>
-<p><label for = "password">Password</label>:
-
-<%= text_field 'user', 'password' %></p>
-<p><label for = "password_confirmation">Password_Confirmation</label>:
-
-<%= text_field 'user', 'password_confirmation' %></p>
-<p><label for = "name">Name</label>:
-
-<%= text_field 'user', 'name' %></p>
-<p><label for = "city">City</label>:
-
-<%= text_field 'user', 'city' %></p>
-<p><label for = "registration_country">Registration Country</label>:
-
-<%= text_field 'user', 'registration_country' %></p>
-<p><label for = "contact_number">Contact Number</label>:
-
-<%= text_field 'user', 'contact_number' %></p>
-<%= submit_tag "Register" %>
-
-<% end -%>
+<%= link_to "Log In", {:action => "log_in", :controller => "authentication"}%><br>
+<br>
+<%= link_to "Register User", {:action => "new"}%><br>
+<br>
+<%= link_to "Forgot Password", {:action => "forgot_password", :controller => "login"}%>
