@@ -48,7 +48,7 @@ class LoginController < ApplicationController
     
         if @user 
             if reset_params[:new_password] == reset_params[:confirm_new_password]
-                if @user.reset_password!(reset_params[:password])
+                if @user.reset_password!(reset_params[:new_password])
                     render json: {status: 'ok'}, status: :ok
                 else
                     render json: {error: @user.errors.full_messages}, status: :unprocessable_entity
