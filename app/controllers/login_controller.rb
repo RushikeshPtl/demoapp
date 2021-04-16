@@ -1,6 +1,9 @@
 class LoginController < ApplicationController
     protect_from_forgery with: :null_session
-    before_action :authenticate_request!
+    #before_action :authenticate_request!
+
+    def hello
+    end
 
     def sign_in
         @user = User.find_by_username(login_params[:username])
