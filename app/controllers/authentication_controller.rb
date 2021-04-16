@@ -1,6 +1,6 @@
 class AuthenticationController < ApplicationController
     protect_from_forgery with: :null_session
-    
+
     def log_in 
     end
 
