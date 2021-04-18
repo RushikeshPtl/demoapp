@@ -7,7 +7,8 @@ class AuthenticationController < ApplicationController
     def authenticate_user
         user = User.find_by_email(auth_params[:email])
         if user.valid_password?(auth_params[:password])
-            render json: payload(user)
+            token = payload(user)
+            redirect_to :action => "list", :controller => "booking"
         else
             render json: {errors: ['Invalid Username/Password'], status: :Unauthorized}
         end

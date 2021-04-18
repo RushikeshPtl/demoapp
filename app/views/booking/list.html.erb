@@ -1,0 +1,16 @@
+<h1>Booking Platform</h1>
+<ul id=buses >
+    <% @buses.each do |b| %>
+        <li>
+            Bus Id          : <%= b.id %><br>
+            Route           : <%= b.route_name %><br>
+            Pick Up Time    : <%= b.trip_start_time %><br>
+            Drop Time       : <%= b.trip_end_time %><br>
+            Ticket Price    : <%= b.ticket_price %><br>
+            Seats Available : <%= b.seat_capacity %><br>
+            <%= link_to 'Book Seats', {:action => 'book_trip' } %><br>
+            ----------------------------------------
+            <br>
+        </li>
+    <% end %>
+</ul>

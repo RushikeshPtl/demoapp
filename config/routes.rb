@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   post "RP_token" => "login#rp_token"
   get "New_Password"     =>"login#new_password"
   post "Reset_Password" => "login#reset"
+  post "Create_bus" => "booking#create_bus"
+  get "Buses" => "booking#list"
+  get "Book_Trip" => "booking#book_trip"
 end
