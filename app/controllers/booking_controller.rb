@@ -4,11 +4,14 @@ class BookingController < ApplicationController
         @buses = Bus.all
     end
 
+    def add_bus
+    end
+
     def create_bus
         route = bus_params[:route_name]
         t = Time.new
         start_time = Time.zone.local_to_utc(Time.new(t.year, t.month, t.day+1, 11, 0, 0))
-        end_time = Time.zone.local_to_utc(Time.new(t.year, t.month, t.day+1, start_time.hour + bus_params[:trip_time], 0, 0))
+        end_time = Time.zone.local_to_utc(Time.new(t.year, t.month, t.day+1, start_time.hour + bus_params[:trip_time].to_i, 0, 0))
         cost = bus_params[:ticket_price]
         seats = bus_params[:seat_capacity]
         @bus = Bus.new({"route_name"=>route, "trip_start_time"=> start_time.to_datetime, "trip_end_time"=>end_time.to_datetime, "ticket_price"=>cost, "seat_capacity"=>seats})

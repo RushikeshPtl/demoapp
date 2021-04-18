@@ -1,0 +1,18 @@
+<h1>Add Bus</h1>
+<%= form_tag :action => 'create_bus' do %>
+<p><label for = "route_name">Bus Route</label>:
+
+<%= text_field 'bus', 'route_name' %></p>
+<p><label for = "trip_time">Duration In Hour</label>:
+
+<%= text_field 'bus', 'trip_time' %></p>
+<p><label for = "ticket_price">Ticket Price</label>:
+
+<%= text_field 'bus', 'ticket_price' %></p>
+<p><label for = "seat_capacity">Seating Capacity</label>:
+
+<%= text_field 'bus', 'seat_capacity' %></p>
+
+<%= submit_tag "Add" %>
+
+<% end -%>
