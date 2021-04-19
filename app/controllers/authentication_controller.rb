@@ -17,6 +17,11 @@ class AuthenticationController < ApplicationController
         end
     end
 
+    def log_out
+        session[:user_id] = nil
+        redirect_to :action=> "welcome", :controller=>'user'
+    end
+
     private
     def auth_params
         params.require(:user).permit(:email, :password)

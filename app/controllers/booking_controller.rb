@@ -19,7 +19,7 @@ class BookingController < ApplicationController
         if @bus.save
             render json: "Bus Added Successfully"
         else
-            render json: @bus
+            render json: "Can not add bus"
         end
     end
 
@@ -55,12 +55,23 @@ class BookingController < ApplicationController
         @bus = Bus.find_by_id(bus_id)
         @bus.update({'route_name'=>@bus[:route_name], 'trip_start_time'=>@bus[:trip_start_time], 'trip_end_time'=>@bus[:trip_end_time], 'ticket_price'=>@bus[:ticket_price], 'seat_capacity'=>@bus[:seat_capacity].to_i-seats_booked})
         @booking = Booking.new({'bus_id'=>bus_id, 'user_id'=>user_id, 'cost_paid'=>total_bill, 'seats_booked'=>seats_booked, 'is_canceled'=>0})
-        if @booking.save
-            render json: "Seats Booked Successfully......."
-        else
-            render json: "Booking Failed........"
-        end
+        @booking.save
+            #render json: "Successful......"
+        #end
     end
+
+    def find_bookings
+        @bookings = Booking.where({:user_id=>session[:user_id], :is_canceled=>0})
+    end
+
+    def cancel_booking
+        @bus = Bus.find_by_id(params[:bus_id])
+        @bus.update({'seat_capacity'=>@bus[:seat_capacity].to_i+params[:seats_booked].to_i})
+        @booking = Booking.find_by_id(params[:booking_id])
+        @booking.update({'is_canceled'=>1})
+        redirect_to :action=>'find_bookings'
+    end
+    
 
 
     private

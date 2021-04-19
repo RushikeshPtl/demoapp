@@ -1,0 +1,8 @@
+<br>
+Name :<%= @user[:name] %><br>
+Email :<%= @user[:email] %><br>
+City  :<%= @user[:city] %><br>
+Country :<%= @user[:registration_country] %><br>
+Contact Number :<%= @user[:contact_number] %><br>
+<%= link_to "Edit Profile", {:action => "edit_user"}%><br>
+<%= link_to "Back", {:action => "list", :controller=> 'booking'}%><br>

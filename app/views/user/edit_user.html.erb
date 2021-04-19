@@ -1,0 +1,14 @@
+<h1>Edit User Profile</h1>
+
+<%= form_for @user, :url =>{:action => "update_user", :id =>@user} do |u| %>
+
+<p>Username: <%= u.text_field 'username' %></p>
+<p>Email: <%= u.text_field  'email' %></p>
+<p>Name: <%= u.text_field  'name' %></p>
+<p>City: <%= u.text_field  'city' %></p>
+<p>Registration Country: <%= u.text_field  'registration_country' %></p>
+<p>Contact Number: <%= u.text_field  'contact_number' %></p>
+<%= u.submit "Save changes" %>
+<% end %>
+
+<%= link_to 'Back', {:action => 'user_profile' } %>

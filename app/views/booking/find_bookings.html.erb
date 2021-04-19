@@ -1,0 +1,21 @@
+<h1>Bookings</h1>
+<% if @bookings.blank? %>
+<p>No bookings available</p>
+<% else %>
+<ul id = "bookings">
+   <% @bookings.each do |b| %>
+        <li>
+            Bus Id          : <%= b.bus_id %><br>
+            Route           : <%= Bus.find_by_id(b.bus_id)[:route_name] %><br>
+            Pick Up Time    : <%= Bus.find_by_id(b.bus_id)[:trip_start_time] %><br>
+            Drop Time       : <%= Bus.find_by_id(b.bus_id)[:trip_end_time] %><br>
+            Seats Booked    : <%= b.seats_booked %><br>
+            Cost Paid       : <%= b.cost_paid %> RS<br>
+            <%= link_to 'Cancel Booking', {:action=>'cancel_booking', :bus_id=>b.bus_id, :booking_id=>b.id, :seats_booked=>b.seats_booked} %><br>
+            -----------------------------------------------------
+            <br>
+        </li>
+   <% end %>
+</ul>
+
+<% end %>

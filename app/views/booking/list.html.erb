@@ -15,3 +15,6 @@ Welcome <%= @current_user[:name] %><br>
         </li>
     <% end %>
 </ul>
+<%= link_to 'Profile', {:action => 'user_profile', :controller=> 'user'} %><br>
+<%= link_to 'Bookings', {:action => 'find_bookings'} %><br>
+<%= link_to 'Log Out', {:action => 'log_out', :controller=> 'authentication'} %><br>
