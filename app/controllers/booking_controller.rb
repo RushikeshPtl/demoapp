@@ -1,6 +1,7 @@
 class BookingController < ApplicationController
     skip_before_action :verify_authenticity_token
     def list
+        @current_user = User.find_by_id(session[:user_id])
         @buses = Bus.all
     end
 
@@ -23,11 +24,51 @@ class BookingController < ApplicationController
     end
 
     def book_trip
+        @trip = Bus.find_by_id(params[:bus_id])
+        @user = User.find_by_id(params[:user_id])
+    end
+
+    def show_details
+        @bus = Bus.find_by_id(params[:bus_id])
+        @user = User.find_by_id(session[:user_id])
+        @seats = params[:seats_booked]
+        @bill = params[:bill]
+    end
+
+    def initiate_booking
+        @trip = Bus.find_by_id(booking_params[:bus_id])
+        @user = User.find_by_id(session[:user_id])
+        seats_required = booking_params[:seats_required].to_i
+        if @trip[:seat_capacity] >= seats_required
+            total_bill = @trip[:ticket_price] * seats_required
+            redirect_to :action=>'show_details', :bus_id=>@trip.id, :seats_booked=>seats_required, :bill=>total_bill
+        else
+            render json: "Seats Not Availble"
+        end
+    end
+
+    def confirm_booking
+        bus_id = params[:bus_id]
+        user_id = session[:user_id]
+        seats_booked = params[:seats_booked].to_i
+        total_bill = params[:bill]
+        @bus = Bus.find_by_id(bus_id)
+        @bus.update({'route_name'=>@bus[:route_name], 'trip_start_time'=>@bus[:trip_start_time], 'trip_end_time'=>@bus[:trip_end_time], 'ticket_price'=>@bus[:ticket_price], 'seat_capacity'=>@bus[:seat_capacity].to_i-seats_booked})
+        @booking = Booking.new({'bus_id'=>bus_id, 'user_id'=>user_id, 'cost_paid'=>total_bill, 'seats_booked'=>seats_booked, 'is_canceled'=>0})
+        if @booking.save
+            render json: "Seats Booked Successfully......."
+        else
+            render json: "Booking Failed........"
+        end
     end
 
 
     private
     def bus_params
         params.require(:bus).permit(:route_name, :trip_time, :ticket_price, :seat_capacity)
+    end
+
+    def booking_params
+        params.require(:booking).permit(:bus_id, :seats_required)
     end
 end

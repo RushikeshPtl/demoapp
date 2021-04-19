@@ -1,0 +1,6 @@
+<h1>Booking Details</h1>
+Route :<%= @bus[:route_name] %><br>
+Time :<%= @bus[:trip_start_time] %><br>
+Seats Booked :<%= @seats %><br>
+Total Bill :<%= @bill %><br>
+<%= link_to 'PAY', {:action => 'confirm_booking', :bus_id => @bus[:id], :seats_booked => @seats, :bill => @bill} %>

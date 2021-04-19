@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   post "Create_bus" => "booking#create_bus"
   get "Buses" => "booking#list"
   get "Book_Trip" => "booking#book_trip"
+  post "Initiate_Booking" => "booking#initiate_booking"
+  get "Show Details" => "booking#show_details"
+  get "Confirm_Booking" => "booking#confirm_booking"
 end

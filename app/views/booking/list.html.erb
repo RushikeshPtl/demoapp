@@ -1,4 +1,5 @@
 <h1>Booking Platform</h1>
+Welcome <%= @current_user[:name] %><br>
 <ul id=buses >
     <% @buses.each do |b| %>
         <li>
@@ -8,7 +9,7 @@
             Drop Time       : <%= b.trip_end_time %><br>
             Ticket Price    : <%= b.ticket_price %><br>
             Seats Available : <%= b.seat_capacity %><br>
-            <%= link_to 'Book Seats', {:action => 'book_trip' } %><br>
+            <%= link_to 'Book Seats', {:action => 'book_trip' , :bus_id => b.id, :user_id => @current_user[:id]} %><br>
             ----------------------------------------
             <br>
         </li>

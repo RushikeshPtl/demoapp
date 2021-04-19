@@ -1,0 +1,14 @@
+<br>
+Bus Id          : <%= @trip.id %><br>
+Route           : <%= @trip.route_name %><br>
+Pick Up Time    : <%= @trip.trip_start_time %><br>
+Drop Time       : <%= @trip.trip_end_time %><br>
+Ticket Price    : <%= @trip.ticket_price %><br>
+Seats Available : <%= @trip.seat_capacity %><br>
+<%= form_tag :action => 'initiate_booking' do %>
+<p><label for = "bus_id">Enter Bus ID</label>:
+<%= text_field 'booking', 'bus_id' %></p>
+<p><label for = "seats_required">Enter Number Of Seats Required</label>:
+<%= text_field 'booking', 'seats_required' %></p>
+<%= submit_tag "Book" %>
+<% end -%>
