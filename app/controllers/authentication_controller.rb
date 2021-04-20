@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
     def authenticate_user
         user = User.find_by_email(auth_params[:email])
         @msg = ""
-        if user.valid_password?(auth_params[:password])
+        if user != nil && user.valid_password?(auth_params[:password])
             token = payload(user)
             session[:user_id] = user.id
             current_user
