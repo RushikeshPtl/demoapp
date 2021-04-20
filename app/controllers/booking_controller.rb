@@ -2,7 +2,7 @@ class BookingController < ApplicationController
     skip_before_action :verify_authenticity_token
     def list
         @current_user = User.find_by_id(session[:user_id])
-        @buses = Bus.all
+        @buses = Bus.order(id: :ASC)
     end
 
     def add_bus

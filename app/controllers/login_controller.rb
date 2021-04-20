@@ -45,19 +45,19 @@ class LoginController < ApplicationController
         token = reset_params[:reset_password_token].to_s
     
         @user = User.find_by_reset_password_token(token)
-    
+        @msg = ""
         if @user 
             if reset_params[:new_password] == reset_params[:confirm_new_password]
                 if @user.reset_password!(reset_params[:new_password])
-                    render json: {status: 'ok'}, status: :ok
+                    @msg = 'Password Changed Successfully.......'
                 else
-                    render json: {error: @user.errors.full_messages}, status: :unprocessable_entity
+                    @msg = "Error occured while resetting the password...."
                 end 
             else 
-                render json: "Password not confirmed"
+                @msg = "Password not confirmed"
             end
         else
-          render json: {error:  ['Link not valid or expired. Try generating a new link.']}, status: :not_found
+          @msg = 'Link not valid or expired. Try generating a new link.'
         end
     end
 

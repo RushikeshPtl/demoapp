@@ -10,10 +10,11 @@ class UserController < ApplicationController
     def register_user
         @user = User.new(user_params)
         #@user[:date_created] = Time.zone.local_to_utc(Time.new)
+        @msg = ""
         if @user.save
-            render json: "User Registered Successfully"
+            @msg = "User Registered Successfully..."
         else 
-            render json: "Can Not Add User"
+            @msg = "Can Not Add User...."
         end
     end
 

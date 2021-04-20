@@ -1,0 +1,6 @@
+<h1><%= @msg %></h1>
+<%= link_to "Log In", {:action => "log_in", :controller => "authentication"}%><br>
+<br>
+<%= link_to "Register User", {:action => "new", :controller => "user"}%><br>
+<br>
+<%= link_to "Forgot Password", {:action => "forgot_password", :controller => "login"}%>
